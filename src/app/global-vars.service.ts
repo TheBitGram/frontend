@@ -907,17 +907,7 @@ export class GlobalVarsService {
     this.localNode = this.backendApi.GetStorage(this.backendApi.LastLocalNodeKey);
 
     if (!this.localNode) {
-      if (environment.localNodeURL) {
-        this.localNode = environment.localNodeURL;
-      } else {
-        const hostname = (window as any).location.hostname;
-        if (environment.production) {
-          this.localNode = hostname;
-        } else {
-          this.localNode = `${hostname}:17001`;
-        }
-      }
-
+      this.localNode = environment.localNodeURL;
       this.backendApi.SetStorage(this.backendApi.LastLocalNodeKey, this.localNode);
     }
 
