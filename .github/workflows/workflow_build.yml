@@ -33,10 +33,12 @@ jobs:
           - stage
         include:
           - environment_name: dev
+            build_environment_name: pearl-dev
             docker_repository_name: 067550988196.dkr.ecr.us-east-1.amazonaws.com
             aws_access_key_id_secrets_name: AWS_ACCESS_KEY_ID
             aws_secret_access_key_secrets_name: AWS_SECRET_ACCESS_KEY
           - environment_name: stage
+            build_environment_name: pearl-prod
             docker_repository_name: 283278994941.dkr.ecr.us-east-1.amazonaws.com
             aws_access_key_id_secrets_name: AWS_ACCESS_KEY_ID_STAGE
             aws_secret_access_key_secrets_name: AWS_SECRET_ACCESS_KEY_STAGE
@@ -87,6 +89,7 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           build-args: |
             gh_password=${{ secrets.PASSWORD }}
+            environment=${{ matrix.build_environment_name }}
           labels: ${{ steps.meta.outputs.labels }}
 
       - name: Image digest

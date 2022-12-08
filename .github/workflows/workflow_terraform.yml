@@ -64,13 +64,6 @@ jobs:
         working-directory: ./main/terraform
         run: terraform init -input=false
 
-      - name: Terraform Setup Auto Variables [App]
-        working-directory: ./main/terraform
-        run: |
-          cp ${{ inputs.environment_name }}.tfvars env.auto.tfvars
-          cat env.auto.tfvars
-          echo 'docker_tag = "planning_only"' > docker_tag.auto.tfvars
-
       # Override docker_tag TF variable if specified for deployment
       - name: Terraform Setup Auto Variables [App Deploy]
         working-directory: ./main/terraform
