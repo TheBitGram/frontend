@@ -21,6 +21,11 @@ variable "service_name" {
   default = "gem-frontend"
 }
 
+variable "docker_service_name" {
+  type    = string
+  default = "gem-frontend"
+}
+
 variable "aws_region" {
   type    = string
   default = "us-east-1"
